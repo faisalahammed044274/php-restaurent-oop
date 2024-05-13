@@ -112,6 +112,39 @@ class App
         }
     }
 
+
+        // Register
+        public function register($query, $arr, $path)
+        {
+            if ($this->validate($arr) == "empty") {
+                echo "<script>alert('One or more inputs are empty!')</script>";
+            } else {
+                $register_user = $this->link->prepare($query);
+                $register_user->execute($arr);
+    
+                header("location : " . $path . "");
+            }
+        }
+
+        public function login($query,$data,$path){
+
+            //Email
+            $login_user = $this->link->query($query);
+            $login_user->execute($data);
+
+            $fetch = $login_user->fetch(PDO::FETCH_OBJ);
+
+            if($login_user->rowCount() > 0){
+                
+                //password
+                if(password_verify($data['password'], $fetch['password'])){
+                    
+                    //start session vars
+                    header("location: " .$path."");
+                }
+            }
+        }
+
 }
 
 $obj = new App;
