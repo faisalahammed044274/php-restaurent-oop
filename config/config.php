@@ -2,6 +2,6 @@
 
 
 define("HOST", "localhost");
-define("DBNMAME", "restaurent_app");
+define("DBNAME", "php_restaurent");
 define("USER", "root");
 define("PASS", "");
