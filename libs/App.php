@@ -135,7 +135,7 @@ class App
             $fetch = $login_user->fetch(PDO::FETCH_OBJ);
 
             if($login_user->rowCount() > 0){
-                
+
                 //password
                 if(password_verify($data['password'], $fetch['password'])){
                     
@@ -143,6 +143,12 @@ class App
                     header("location: " .$path."");
                 }
             }
+
+            //Session Starting
+            function startSession(){
+                session_start();
+            }
+
         }
 
 }
