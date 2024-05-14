@@ -1,4 +1,4 @@
-<?php require "../config/config.php";?>
+<?php require "config/config.php";?>
 <style>
     marquee {
         background-color: red;
@@ -31,7 +31,7 @@ class App
         $this->link = new PDO("mysql:host" . $this->host . ";dbname=" . $this->dbname . "", $this->user, $this->pass);
 
         if ($this->link) {
-            echo "<marquee>Database is working &nbsp; Database is working &nbsp; Database is working</marquee>";
+            // echo "<marquee>Database is working </marquee>";
         }
     }
 
@@ -145,10 +145,18 @@ class App
             }
 
             //Session Starting
-            function startSession(){
+            function startingSession(){
                 session_start();
             }
 
+
+            //Validating sessions
+
+            function validateSession($path){
+                if(isset($_SESSION['id'])){
+                    header("location: " .$path."");
+                }
+            }
         }
 
 }
